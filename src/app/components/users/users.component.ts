@@ -13,7 +13,6 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   loaded: boolean = false;
   enableAdd: boolean = true;
-  currentClasses = {};
 
   constructor() {}
 
@@ -28,8 +27,8 @@ export class UsersComponent implements OnInit {
           city: 'Boston',
           state: 'MA'
         },
-        image: 'https://farm2.staticflickr.com/1018/1430618662_fda3a30bae.jpg',
-        isActive: true
+        isActive: true,
+        registered: new Date('01/02/2018 08:30:00')
       },
       {
         firstName: 'Kevin',
@@ -40,8 +39,8 @@ export class UsersComponent implements OnInit {
           city: 'Lynn',
           state: 'MA'
         },
-        image: 'https://farm6.staticflickr.com/5770/22421685249_fc8d9fab2a.jpg',
-        isActive: false
+        isActive: false,
+        registered: new Date('03/11/2017 06:30:00')
       },
       {
         firstName: 'Karen',
@@ -52,27 +51,14 @@ export class UsersComponent implements OnInit {
           city: 'Miami',
           state: 'FL'
         },
-        image: 'https://farm8.staticflickr.com/7503/15535273740_013487b73f.jpg',
-        isActive: true
+        isActive: true,
+        registered: new Date('11/02/2016 10:30:00')
       }
     ];
     this.loaded = true;
-    this.setCurrentClasses();
-
-    // this.addUser({
-    //   firstName: 'David',
-    //   lastName: 'Jackson'
-    // });
   }
 
   addUser(user: User) {
     this.users.push(user);
-  }
-
-  setCurrentClasses() {
-    this.currentClasses = {
-      'btn-success': this.enableAdd,
-      'big-text': this.showExtended
-    };
   }
 }
