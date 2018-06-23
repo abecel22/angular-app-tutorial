@@ -9,10 +9,21 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  user: User = {
+    firstName: '',
+    lastName: '',
+    age: null,
+    address: {
+      street: '',
+      city: '',
+      state: ''
+    }
+  };
   users: User[];
   showExtended: boolean = true;
   loaded: boolean = false;
-  enableAdd: boolean = true;
+  enableAdd: boolean = false;
+  showUserForm: boolean = true;
 
   constructor() {}
 
@@ -28,7 +39,8 @@ export class UsersComponent implements OnInit {
           state: 'MA'
         },
         isActive: true,
-        registered: new Date('01/02/2018 08:30:00')
+        registered: new Date('01/02/2018 08:30:00'),
+        hide: true
       },
       {
         firstName: 'Kevin',
@@ -40,7 +52,8 @@ export class UsersComponent implements OnInit {
           state: 'MA'
         },
         isActive: false,
-        registered: new Date('03/11/2017 06:30:00')
+        registered: new Date('03/11/2017 06:30:00'),
+        hide: true
       },
       {
         firstName: 'Karen',
@@ -52,13 +65,36 @@ export class UsersComponent implements OnInit {
           state: 'FL'
         },
         isActive: true,
-        registered: new Date('11/02/2016 10:30:00')
+        registered: new Date('11/02/2016 10:30:00'),
+        hide: true
       }
     ];
     this.loaded = true;
   }
 
-  addUser(user: User) {
-    this.users.push(user);
+  addUser() {
+    this.user.isActive = true;
+    this.user.registered = new Date();
+    this.users.unshift(this.user);
+    this.user = {
+      firstName: '',
+      lastName: '',
+      age: null,
+      address: {
+        street: '',
+        city: '',
+        state: ''
+      }
+    };
   }
+
+  onSubmit(e) {
+    e.preventDefault();
+    console.log(234);
+  }
+
+  // Method was not needed . Just added to click event in HTML template.
+  // toggleHide(user: User) {
+  //   user.hide = !user.hide;
+  // }
 }
